@@ -1,10 +1,16 @@
 // run in console with: yarn start
 
-const elem = document.querySelector('.click');
+const person = {
+    name: 'arku',
+    age: 123,
+};
 
-function handleClick(this: HTMLAnchorElement, event: Event) {
-    event.preventDefault();
-    console.debug(this.className);
-}
+type Person = typeof person;
 
-elem.addEventListener('click', handleClick, false);
+const anotherPerson: Person = {
+    name: 'ss',
+    age: 33,
+};
+
+console.debug(person);
+console.debug(anotherPerson);
