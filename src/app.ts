@@ -1,15 +1,10 @@
-// run in console with: clear; "running tsc:"; tsc; ""; "running node:"; ""; node .\dist\app.js; "";
 // run in console with: yarn start
 
-class MyClass {
-    public myMethod() {
-        const foo = 123;
+const elem = document.querySelector('.click');
 
-        console.debug('1', this);
-
-        setTimeout(() => console.debug('2', this));
-    }
+function handleClick(this: HTMLAnchorElement, event: Event) {
+    event.preventDefault();
+    console.debug(this.className);
 }
 
-const myInstance = new MyClass();
-myInstance.myMethod();
+elem.addEventListener('click', handleClick, false);
