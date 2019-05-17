@@ -1,25 +1,23 @@
 // run in console with: yarn start
 
-const person = {
-    name: 'arku',
-    age: 123,
-};
-
-type Person = typeof person;
-type PersonKeys = keyof Person;
-type PersonTypes = Person[PersonKeys];
-
-function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-    return obj[key];
+interface IPerson {
+    name: string;
+    age: number;
 }
 
-const personName = getProperty(person, 'name');
-
-const anotherPerson: Person = {
-    name: 'ss',
+const person: IPerson = {
+    name: 'arku',
     age: 33,
 };
 
+type MyReadonly<T> = { readonly [P in keyof T]: T[P] };
+
+function freezePerson<T>(obj: T): MyReadonly<T> {
+    return Object.freeze(obj);
+}
+
+const newPerson = freezePerson(person);
+// newPerson.name = 'abc'; // compiler error
+
 console.debug(person);
-console.debug(anotherPerson);
-console.debug(personName);
+console.debug('readonly:', newPerson);
