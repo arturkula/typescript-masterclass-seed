@@ -2,21 +2,21 @@
 
 interface IPerson {
     name: string;
-    age: number;
+    age?: number;
 }
 
-type MyPartial<T> = { [P in keyof T]?: T[P] };
+type MyRequired<T> = { -readonly [P in keyof T]-?: T[P] };
 
-function updatePerson<T>(obj: T, prop: Partial<T>): T {
-    return { ...obj, ...prop };
+function printAge(value: Required<IPerson>) {
+    return `${value.name} is ${value.age}`;
 }
 
-const person: IPerson = {
+const person: Required<IPerson> = {
     name: 'arku',
     age: 33,
 };
 
-const updatedPerson = updatePerson(person, { name: 'ABC' });
+const age = printAge(person);
 
 console.debug(person);
-console.debug(updatedPerson);
+console.debug(age);
