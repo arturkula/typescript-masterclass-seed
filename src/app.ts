@@ -1,16 +1,19 @@
 // run in console with: yarn start
 
-interface IPerson {
-    name: string;
-    age?: number;
-    address: {};
+let dictionary: Record<string, ITrackStates> = {};
+
+interface ITrackStates {
+    current: string;
+    next: string;
 }
 
-type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
-
-const person: Pick<IPerson, 'name' | 'age'> = {
-    name: 'arku',
-    age: 33,
+const item: Record<keyof ITrackStates, string> = {
+    current: 'jksdgf',
+    next: 'fffdwweyy',
 };
 
-console.debug(person);
+// Numbers are coerced to String
+dictionary[0] = item;
+
+console.debug(dictionary);
+console.debug(dictionary[0]);
