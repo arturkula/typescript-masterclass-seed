@@ -3,20 +3,14 @@
 interface IPerson {
     name: string;
     age?: number;
+    address: {};
 }
 
-type MyRequired<T> = { -readonly [P in keyof T]-?: T[P] };
+type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
 
-function printAge(value: Required<IPerson>) {
-    return `${value.name} is ${value.age}`;
-}
-
-const person: Required<IPerson> = {
+const person: Pick<IPerson, 'name' | 'age'> = {
     name: 'arku',
     age: 33,
 };
 
-const age = printAge(person);
-
 console.debug(person);
-console.debug(age);
