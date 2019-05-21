@@ -5,19 +5,18 @@ interface IPerson {
     age: number;
 }
 
+type MyPartial<T> = { [P in keyof T]?: T[P] };
+
+function updatePerson<T>(obj: T, prop: Partial<T>): T {
+    return { ...obj, ...prop };
+}
+
 const person: IPerson = {
     name: 'arku',
     age: 33,
 };
 
-type MyReadonly<T> = { readonly [P in keyof T]: T[P] };
-
-function freezePerson<T>(obj: T): MyReadonly<T> {
-    return Object.freeze(obj);
-}
-
-const newPerson = freezePerson(person);
-// newPerson.name = 'abc'; // compiler error
+const updatedPerson = updatePerson(person, { name: 'ABC' });
 
 console.debug(person);
-console.debug('readonly:', newPerson);
+console.debug(updatedPerson);
