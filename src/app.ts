@@ -1,19 +1,43 @@
 // run in console with: yarn start
 
-let dictionary: Record<string, ITrackStates> = {};
+// old way:
 
-interface ITrackStates {
-    current: string;
-    next: string;
+// function foo(bar: string | number) {
+//     if (typeof bar === 'string') {
+//         return bar.toLocaleUpperCase();
+//     }
+
+//     if (typeof bar === 'number') {
+//         return bar.toFixed(2);
+//     }
+// }
+
+// const x = foo('aaaa');
+// const y = foo(111);
+
+// console.debug(x);
+// console.debug(y);
+
+// new way:
+
+class Song {
+    constructor(public title: string, public duration: string | number) {}
 }
 
-const item: Record<keyof ITrackStates, string> = {
-    current: 'jksdgf',
-    next: 'fffdwweyy',
-};
+function getSongDuration(item: Song) {
+    if (typeof item.duration === 'string') {
+        return item.duration;
+    }
+    const { duration } = item;
+    const minutes = Math.floor(duration / 60000);
+    const seconds = (duration / 1000) % 60;
+    return `${minutes}:${seconds}`;
+}
 
-// Numbers are coerced to String
-dictionary[0] = item;
+const songDurationFromString = getSongDuration(new Song('Wonderful Wonderful', '05:31'));
 
-console.debug(dictionary);
-console.debug(dictionary[0]);
+console.debug(songDurationFromString);
+
+const songDurationFromMS = getSongDuration(new Song('Wonderful Wonderful', 330000));
+
+console.debug(songDurationFromMS);
