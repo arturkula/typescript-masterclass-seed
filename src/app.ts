@@ -1,43 +1,39 @@
 // run in console with: yarn start
 
-// old way:
-
-// function foo(bar: string | number) {
-//     if (typeof bar === 'string') {
-//         return bar.toLocaleUpperCase();
-//     }
-
-//     if (typeof bar === 'number') {
-//         return bar.toFixed(2);
+// class Foo {
+//     public bar() {
+//         // //
 //     }
 // }
 
-// const x = foo('aaaa');
-// const y = foo(111);
+// const bar = new Foo();
 
-// console.debug(x);
-// console.debug(y);
+// // old way:
+// console.debug(Object.getPrototypeOf(bar) === Foo.prototype);
+// // new way:
+// console.debug(bar instanceof Foo);
 
-// new way:
-
+// tslint:disable-next-line:max-classes-per-file
 class Song {
-    constructor(public title: string, public duration: string | number) {}
+    constructor(public title: string, public duration: number) {}
 }
 
-function getSongDuration(item: Song) {
-    if (typeof item.duration === 'string') {
-        return item.duration;
+// tslint:disable-next-line:max-classes-per-file
+class Playlist {
+    constructor(public name: string, public songs: Song[]) {}
+}
+
+function getItemName(item: Song | Playlist): string {
+    if (item instanceof Song) {
+        return item.title;
     }
-    const { duration } = item;
-    const minutes = Math.floor(duration / 60000);
-    const seconds = (duration / 1000) % 60;
-    return `${minutes}:${seconds}`;
+    return item.name;
 }
 
-const songDurationFromString = getSongDuration(new Song('Wonderful Wonderful', '05:31'));
+const songName = getItemName(new Song('Wonderful Wonderful', 300000));
 
-console.debug(songDurationFromString);
+console.debug('Song name:', songName);
 
-const songDurationFromMS = getSongDuration(new Song('Wonderful Wonderful', 330000));
+const playlistName = getItemName(new Playlist('The best songs', [new Song('The Man', 300000)]));
 
-console.debug(songDurationFromMS);
+console.debug('Playlist name:', playlistName);
