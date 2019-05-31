@@ -1,37 +1,46 @@
 // run in console with: yarn start
 
-// // introduction:
-// const exists = 'localStorage' in window; // prop exists in obj
-// const foo = 'bar'; // literal type of 'bar'
-// const foo: string = 'bar'; // string type
-
-class Song {
-    public kind: 'song';
-    constructor(public title: string, public duration: number) {}
+interface IOrder {
+    id: string;
+    amount: number;
+    currency: string;
 }
 
-// tslint:disable-next-line:max-classes-per-file
-class Playlist {
-    public kind: 'playlist';
-    constructor(public name: string, public songs: Song[]) {}
+interface IStripe {
+    card: string;
+    cvc: string;
 }
 
-function isSong(item: any): item is Song {
-    return 'title' in item; // title prop exists in item
+interface IPayPal {
+    email: string;
 }
 
-function getItemName(item: Song | Playlist): string {
-    // if (isSong(item)) {
-    if (item.kind === 'song') {
-        return item.title;
-    }
-    return item.name;
-}
+type CheckoutCard = IOrder & IStripe;
+type CheckoutPayPal = IOrder & IPayPal;
 
-const songName = getItemName(new Song('Wonderful Wonderful', 300000));
+const order: IOrder = {
+    id: 'dfgwer324',
+    amount: 100,
+    currency: 'USD',
+};
 
-console.debug('Song name:', songName);
+const orderCard: CheckoutCard = {
+    ...order,
+    card: '1233 1233 1233 1233',
+    cvc: '1234',
+};
 
-const playlistName = getItemName(new Playlist('The best songs', [new Song('The Man', 300000)]));
+const orderPayPal: CheckoutPayPal = {
+    ...order,
+    email: 'aasd@reew.wer',
+};
 
-console.debug('Playlist name:', playlistName);
+// // this:
+// const assigned = Object.assign({}, order, orderCard);
+// // is the same as this:
+// const assigned = {...order, ...orderCard};
+
+console.debug('order:', order);
+console.debug('orderCard:', orderCard);
+console.debug('orderPayPal:', orderPayPal);
+// console.debug('assigned:', assigned);
