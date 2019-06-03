@@ -7,11 +7,13 @@ interface IOrder {
 }
 
 interface IStripe {
+    type: 'stripe';
     card: string;
     cvc: string;
 }
 
 interface IPayPal {
+    type: 'paypal';
     email: string;
 }
 
@@ -26,21 +28,29 @@ const order: IOrder = {
 
 const orderCard: CheckoutCard = {
     ...order,
+    type: 'stripe',
     card: '1233 1233 1233 1233',
     cvc: '1234',
 };
 
 const orderPayPal: CheckoutPayPal = {
     ...order,
+    type: 'paypal',
     email: 'aasd@reew.wer',
 };
 
-// // this:
-// const assigned = Object.assign({}, order, orderCard);
-// // is the same as this:
-// const assigned = {...order, ...orderCard};
+type Payload = CheckoutCard | CheckoutPayPal;
+
+function checkout(payload: Payload) {
+    if (payload.type === 'stripe') {
+        console.debug(payload.card, payload.cvc);
+    }
+
+    if (payload.type === 'paypal') {
+        console.debug(payload.email);
+    }
+}
 
 console.debug('order:', order);
 console.debug('orderCard:', orderCard);
 console.debug('orderPayPal:', orderPayPal);
-// console.debug('assigned:', assigned);
