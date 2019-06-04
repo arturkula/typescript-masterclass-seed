@@ -1,27 +1,18 @@
 // run in console with: yarn start
 
-interface IItem {
-    name: string;
+// interface IArtist {
+//     name: string;
+// }
+
+class ArtistCreator /*implements IArtist*/ {
+    constructor(public name: string) {}
 }
 
-interface IArtist extends IItem {
-    songs: number;
+function artistFactory({ name }: ArtistCreator) {
+    // return { id: 101, name };
+    return new ArtistCreator(name);
 }
 
-interface IArtist {
-    // no error
-    getSongs(): number;
-}
-
-type Artist2 = { name: string } & IItem;
-// type Artist2 = { name: string; } & IItem; // error
-
-const newArtist: IArtist = {
-    name: 'ABC',
-    songs: 5,
-    getSongs() {
-        return this.songs;
-    },
-};
+const newArtist = artistFactory({ name: 'arku' });
 
 console.debug('newArtist:', newArtist);
