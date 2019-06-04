@@ -1,18 +1,35 @@
 // run in console with: yarn start
 
-// interface IArtist {
-//     name: string;
-// }
-
-class ArtistCreator /*implements IArtist*/ {
-    constructor(public name: string) {}
+class Pizza {
+    constructor(private name: string, private price: number) {}
 }
 
-function artistFactory({ name }: ArtistCreator) {
-    // return { id: 101, name };
-    return new ArtistCreator(name);
+class List<TItem> {
+    private list: TItem[] = [];
+
+    public addItem(item: TItem): void {
+        this.list.push(item);
+    }
+
+    public getList(): TItem[] {
+        return this.list;
+    }
 }
 
-const newArtist = artistFactory({ name: 'arku' });
+const list = new List<Pizza>();
 
-console.debug('newArtist:', newArtist);
+list.addItem(new Pizza('Pepperoni', 15));
+
+const pizzas = list.getList();
+
+class Coupon {
+    constructor(private name: string) {}
+}
+
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('Pepperoni15'));
+
+console.debug('list:', list);
+console.debug('pizzas:', pizzas);
+console.debug('anotherList:', anotherList);
