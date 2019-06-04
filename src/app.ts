@@ -1,35 +1,22 @@
 // run in console with: yarn start
 
-class Pizza {
-    constructor(private name: string, private price: number) {}
-}
-
-class List<TItem> {
-    private list: TItem[] = [];
-
-    public addItem(item: TItem): void {
-        this.list.push(item);
+function reverse(str: string): string;
+function reverse<TItem>(arr: TItem[]): TItem[];
+function reverse<TItem>(stringOrArray: string | TItem[]): string | TItem[] {
+    if (typeof stringOrArray === 'string') {
+        return stringOrArray
+            .split('')
+            .reverse()
+            .join('');
     }
 
-    public getList(): TItem[] {
-        return this.list;
-    }
+    return stringOrArray.slice().reverse();
 }
 
-const list = new List<Pizza>();
+const t = reverse('Pepperoni');
+const r = reverse(['bacon', 'pepperoni', 'chili', 'mushrooms']);
+const z = reverse([1, 2, 3, 4, 5]);
 
-list.addItem(new Pizza('Pepperoni', 15));
-
-const pizzas = list.getList();
-
-class Coupon {
-    constructor(private name: string) {}
-}
-
-const anotherList = new List<Coupon>();
-
-anotherList.addItem(new Coupon('Pepperoni15'));
-
-console.debug('list:', list);
-console.debug('pizzas:', pizzas);
-console.debug('anotherList:', anotherList);
+console.debug('t:', t);
+console.debug('r:', r);
+console.debug('z:', z);
