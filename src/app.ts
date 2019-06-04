@@ -1,56 +1,27 @@
 // run in console with: yarn start
 
-interface IOrder {
-    id: string;
-    amount: number;
-    currency: string;
+interface IItem {
+    name: string;
 }
 
-interface IStripe {
-    type: 'stripe';
-    card: string;
-    cvc: string;
+interface IArtist extends IItem {
+    songs: number;
 }
 
-interface IPayPal {
-    type: 'paypal';
-    email: string;
+interface IArtist {
+    // no error
+    getSongs(): number;
 }
 
-type CheckoutCard = IOrder & IStripe;
-type CheckoutPayPal = IOrder & IPayPal;
+type Artist2 = { name: string } & IItem;
+// type Artist2 = { name: string; } & IItem; // error
 
-const order: IOrder = {
-    id: 'dfgwer324',
-    amount: 100,
-    currency: 'USD',
+const newArtist: IArtist = {
+    name: 'ABC',
+    songs: 5,
+    getSongs() {
+        return this.songs;
+    },
 };
 
-const orderCard: CheckoutCard = {
-    ...order,
-    type: 'stripe',
-    card: '1233 1233 1233 1233',
-    cvc: '1234',
-};
-
-const orderPayPal: CheckoutPayPal = {
-    ...order,
-    type: 'paypal',
-    email: 'aasd@reew.wer',
-};
-
-type Payload = CheckoutCard | CheckoutPayPal;
-
-function checkout(payload: Payload) {
-    if (payload.type === 'stripe') {
-        console.debug(payload.card, payload.cvc);
-    }
-
-    if (payload.type === 'paypal') {
-        console.debug(payload.email);
-    }
-}
-
-console.debug('order:', order);
-console.debug('orderCard:', orderCard);
-console.debug('orderPayPal:', orderPayPal);
+console.debug('newArtist:', newArtist);
