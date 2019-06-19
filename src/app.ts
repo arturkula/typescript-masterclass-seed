@@ -1,22 +1,17 @@
 // run in console with: yarn start
 
-function reverse(str: string): string;
-function reverse<TItem>(arr: TItem[]): TItem[];
-function reverse<TItem>(stringOrArray: string | TItem[]): string | TItem[] {
-    if (typeof stringOrArray === 'string') {
-        return stringOrArray
-            .split('')
-            .reverse()
-            .join('');
-    }
-
-    return stringOrArray.slice().reverse();
+enum Sizes {
+    Small,
+    Medium,
+    Large,
 }
 
-const t = reverse('Pepperoni');
-const r = reverse(['bacon', 'pepperoni', 'chili', 'mushrooms']);
-const z = reverse([1, 2, 3, 4, 5]);
+enum Sizes {
+    ExtraLarge = 3,
+}
 
-console.debug('t:', t);
-console.debug('r:', r);
-console.debug('z:', z);
+const selectedSize = 1;
+
+console.debug('Sizes.Medium: ', Sizes.Medium);
+console.debug('Sizes[Sizes.Large]: ', Sizes[Sizes.Large]);
+console.debug('Sizes[selectedSize]: ', Sizes[selectedSize]);
