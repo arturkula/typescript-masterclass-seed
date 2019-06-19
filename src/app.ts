@@ -1,17 +1,19 @@
 // run in console with: yarn start
 
-enum Sizes {
-    Small,
-    Medium,
-    Large,
+const enum Sizes {
+    Small = 'small',
+    Medium = 'medium',
+    Large = 'large',
 }
 
-enum Sizes {
-    ExtraLarge = 3,
+let selectedSize: Sizes = Sizes.Small;
+
+function updateSize(size: Sizes): void {
+    selectedSize = size;
 }
 
-const selectedSize = 1;
+console.debug('selectedSize: ', selectedSize);
 
-console.debug('Sizes.Medium: ', Sizes.Medium);
-console.debug('Sizes[Sizes.Large]: ', Sizes[Sizes.Large]);
-console.debug('Sizes[selectedSize]: ', Sizes[selectedSize]);
+updateSize(Sizes.Large);
+
+console.debug('selectedSize: ', selectedSize);
