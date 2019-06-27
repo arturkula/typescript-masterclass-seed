@@ -1,19 +1,5 @@
 // run in console with: yarn start
 
-const enum Sizes {
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
-}
+import * as _ from 'lodash';
 
-let selectedSize: Sizes = Sizes.Small;
-
-function updateSize(size: Sizes): void {
-    selectedSize = size;
-}
-
-console.debug('selectedSize: ', selectedSize);
-
-updateSize(Sizes.Large);
-
-console.debug('selectedSize: ', selectedSize);
+_.chunk([1, 2, 3, 4], 2);
