@@ -1,13 +1,11 @@
 // run in console with: yarn start
 
-import * as _ from 'lodash';
+export class Foo {
 
-_.chunk([1, 2, 3, 4], 2);
+    constructor(public name: string) { }
 
-_.mixin({
-    log(item: string) {
-        console.log('...', item);
-    },
-});
+    public bar(age: number) {
 
-_.log('Hello!');
+        console.debug('age: ', age);
+    }
+}
