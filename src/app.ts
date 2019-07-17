@@ -1,8 +1,4 @@
 // run in console with: yarn start
+// or with: clear; "running tsc:"; tsc; ""; "running node:"; ""; node .\dist\app.js; "";
 
-function log(message: string) {
-
-    console.debug('message:', message);
-}
-
-log('This is a not test');
+console.debug('this is app file');

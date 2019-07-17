@@ -3,6 +3,9 @@
     "target": "es5",
     "module": "commonjs",
     "lib": ["dom", "es6"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "noEmitOnError": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true
   }
 }
