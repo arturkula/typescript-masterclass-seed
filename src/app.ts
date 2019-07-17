@@ -1,3 +1,8 @@
 // run in console with: yarn start
 
-console.debug('This is a not test');
+function log(message: string) {
+
+    console.debug('message:', message);
+}
+
+log('This is a not test');
