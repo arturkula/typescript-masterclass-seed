@@ -6,6 +6,7 @@
     "outDir": "dist",
     "noEmitOnError": true,
     "noImplicitThis": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "inlineSourceMap": true
   }
 }
