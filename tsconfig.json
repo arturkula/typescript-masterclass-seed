@@ -10,6 +10,10 @@
     "diagnostics": true,
     // "listFiles": true,
     "listEmittedFiles": true,
-    "pretty": true
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true
   }
 }
