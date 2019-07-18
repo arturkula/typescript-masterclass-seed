@@ -5,6 +5,11 @@
     "lib": ["dom", "es6"],
     "outDir": "dist",
     "noEmitOnError": true,
-    "strict": true
+    "strict": true,
+    "traceResolution": true,
+    "diagnostics": true,
+    // "listFiles": true,
+    "listEmittedFiles": true,
+    "pretty": true
   }
 }
