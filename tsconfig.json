@@ -6,14 +6,19 @@
     "outDir": "dist",
     "noEmitOnError": true,
     "strict": true,
-    "traceResolution": true,
+
+    // "traceResolution": true,
     "diagnostics": true,
     // "listFiles": true,
     "listEmittedFiles": true,
     "pretty": true,
+
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+
+    // "noEmitHelpers": true,
+    "importHelpers": true
   }
 }

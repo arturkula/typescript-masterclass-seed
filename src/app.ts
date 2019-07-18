@@ -1,6 +1,6 @@
 // run in console with: yarn start
 // or with: clear; "running tsc:"; tsc; ""; "running node:"; ""; node .\dist\app.js; "";
 
-class Person { }
+export class App { }
 
-console.debug('this is app file');
+console.debug('this is App file');
