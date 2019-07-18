@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "lib": ["dom", "es6"],
     "outDir": "dist",
     "noEmitOnError": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "inlineSourceMap": true
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
